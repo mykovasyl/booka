@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 
-function Recipe({
-  recipe,
-  onRecipeLike,
-  onRecipeDislike,
-  isLiked,
-  setIsLiked,
-  increaseLikes,
-}) {
+function Recipe({ recipe, onRecipeLike, onRecipeDislike, setIsLiked }) {
   const {
     title,
     readyIn,
@@ -19,7 +12,6 @@ function Recipe({
     liked,
     id = null,
   } = recipe;
-  const [likeCount, setLikeCount] = useState(0);
 
   const mappedIngredients = ingredients.map((ingredient) => (
     <li key={ingredient.name}>
@@ -37,10 +29,6 @@ function Recipe({
     }
   }
 
-  function handleLike() {
-    setLikeCount(likeCount + parseInt(increaseLikes));
-  }
-
   return (
     <div>
       <h1>{title}</h1>
@@ -55,11 +43,6 @@ function Recipe({
           Like it!
         </button>
       )}
-      {id ? (
-        <button type="button" onClick={handleLike}>
-          Likes: {likeCount}
-        </button>
-      ) : null}
       <h3>Ready in {readyIn} minutes</h3>
       <img src={image} alt="food"></img>
       <h3>Summary:</h3>
