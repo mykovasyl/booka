@@ -30,14 +30,14 @@ function App() {
     setRecipes(newRecipes);
   }
 
-  useEffect(() => {
-    // fetch(`${process.env.REACT_APP_API_URL}/recipes`)
-    fetch(`/recipes`)
-      .then((resp) => resp.json())
-      .then((jsonRecipes) => {
-        setRecipes(jsonRecipes);
-      });
-  }, []);
+  // useEffect(() => {
+  //   // fetch(`${process.env.REACT_APP_API_URL}/recipes`)
+  //   fetch(`/recipes`)
+  //     .then((resp) => resp.json())
+  //     .then((jsonRecipes) => {
+  //       setRecipes(jsonRecipes);
+  //     });
+  // }, []);
 
   return (
     <div>
