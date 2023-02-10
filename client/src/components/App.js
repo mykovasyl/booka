@@ -7,8 +7,31 @@ import Home from "./Home";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({});
   const [recipes, setRecipes] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
+
+  // fetch current user else no user logged in
+  useEffect(() => {
+    fetch("/me").then((resp) => {
+      if (resp.ok) {
+        resp.json().then((user) => {
+          setCurrentUser(user);
+
+          // new hash map to get unique students
+          // let studentsList = [
+          //   ...new Map(
+          //     user.students.map((student) => [student["id"], student])
+          //   ).values(),
+          // ];
+          setRecipes(studentsList);
+          setAvatar(user.image_url);
+        });
+      } else {
+        resp.json().then((error) => setErrors(error));
+      }
+    });
+  }, []);
 
   function handleAddRecipe(recipe) {
     fetch(`/recipes`, {
@@ -22,6 +45,7 @@ function App() {
       .then((postedRecipe) => setRecipes([...recipes, postedRecipe]));
   }
 
+  // delete a recipe from your recipe book
   function handleDeleteRecipe(id) {
     const newRecipes = recipes.filter((recipe) => recipe.id !== id);
     fetch(`/recipes/${id}`, {

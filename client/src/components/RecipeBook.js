@@ -12,8 +12,6 @@ function RecipeBook({ recipes, onRecipeDislike, isLiked, setIsLiked }) {
     />
   ));
 
-  setIsLiked(true);
-
   return (
     <div>
       {recipesDisplayed.length === 0
