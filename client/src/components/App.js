@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import RandomRecipe from "./RandomRecipe";
 import RecipeForm from "./RecipeForm";
 import RecipeBook from "./RecipeBook";
 import NavBar from "./NavBar";
 import Home from "./Home";
+import LogIn from "./LogIn";
+import SignUp from "./SignUp";
 import { Switch, Route } from "react-router-dom";
+
+export const UserContext = createContext();
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [recipes, setRecipes] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
+  const [avatar, setAvatar] = useState(null);
+  const [errors, setErrors] = useState([]);
 
   // fetch current user else no user logged in
   useEffect(() => {
@@ -17,14 +23,7 @@ function App() {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
-
-          // new hash map to get unique students
-          // let studentsList = [
-          //   ...new Map(
-          //     user.students.map((student) => [student["id"], student])
-          //   ).values(),
-          // ];
-          setRecipes(studentsList);
+          setRecipes([]);
           setAvatar(user.image_url);
         });
       } else {
@@ -65,33 +64,41 @@ function App() {
 
   return (
     <div>
-      <NavBar />
-      <Switch>
-        <Route path="/randomrecipe">
-          <RandomRecipe
-            onRecipeLike={handleAddRecipe}
-            isLiked={isLiked}
-            setIsLiked={setIsLiked}
-          />
-        </Route>
-        <Route path="/recipeform">
-          <RecipeForm onFormSubmit={handleAddRecipe} />
-        </Route>
-        <Route path="/recipebook">
-          <RecipeBook
-            onRecipeDislike={handleDeleteRecipe}
-            recipes={recipes}
-            isLiked={isLiked}
-            setIsLiked={setIsLiked}
-          />
-        </Route>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="*">
-          <h1>404 not found</h1>
-        </Route>
-      </Switch>
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <NavBar />
+        <Switch>
+          <Route path='/randomrecipe'>
+            <RandomRecipe
+              onRecipeLike={handleAddRecipe}
+              isLiked={isLiked}
+              setIsLiked={setIsLiked}
+            />
+          </Route>
+          <Route path='/recipeform'>
+            <RecipeForm onFormSubmit={handleAddRecipe} />
+          </Route>
+          <Route path='/recipebook'>
+            <RecipeBook
+              onRecipeDislike={handleDeleteRecipe}
+              recipes={recipes}
+              isLiked={isLiked}
+              setIsLiked={setIsLiked}
+            />
+          </Route>
+          <Route path='/login'>
+            <LogIn />
+          </Route>
+          <Route path='/signup'>
+            <SignUp />
+          </Route>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='*'>
+            <h1>404 not found</h1>
+          </Route>
+        </Switch>
+      </UserContext.Provider>
     </div>
   );
 }

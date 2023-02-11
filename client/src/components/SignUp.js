@@ -12,12 +12,7 @@ function SignUp() {
     username: "",
     password: "",
     password_confirmation: "",
-    type: "",
     name: "",
-    subjects: "",
-    grade: "",
-    headline: "",
-    email: "",
   });
 
   const navigate = useNavigate();
@@ -37,7 +32,6 @@ function SignUp() {
 
     fetch("/signup", {
       method: "POST",
-      // body: JSON.stringify(signupForm),
       body: formData,
     }).then((resp) => {
       if (resp.ok) {
@@ -58,10 +52,6 @@ function SignUp() {
 
   function handleFileChange(e) {
     setAvatar({ avatar: e.target.files[0] });
-  }
-
-  function handleOptionChange(e) {
-    setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
   }
 
   return (
@@ -90,19 +80,9 @@ function SignUp() {
             <Col>
               <Form.Label>Username</Form.Label>
               <Form.Control
-                name="username"
-                type="username"
+                name='username'
+                type='username'
                 value={signupForm.username}
-                onChange={handleInputChange}
-              />
-            </Col>
-            <Col>
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                name="email"
-                type="email"
-                placeholder="name@example.com"
-                value={signupForm.email}
                 onChange={handleInputChange}
               />
             </Col>
@@ -111,8 +91,8 @@ function SignUp() {
             <Col>
               <Form.Label>Password</Form.Label>
               <Form.Control
-                name="password"
-                type="password"
+                name='password'
+                type='password'
                 value={signupForm.password}
                 onChange={handleInputChange}
               />
@@ -125,104 +105,35 @@ function SignUp() {
             <Col>
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
-                name="password_confirmation"
-                type="password"
+                name='password_confirmation'
+                type='password'
                 value={signupForm.password_confirmation}
                 onChange={handleInputChange}
               />
             </Col>
           </Row>
-          <p style={{ marginTop: "16px" }}>
-            Are you signing up as a tutor or student?
-            <br />
-            <Form.Check
-              inline
-              label="Student"
-              name="type"
-              value="Student"
-              type="radio"
-              checked={signupForm.type === "Student"}
-              onChange={handleOptionChange}
-            />
-            <Form.Check
-              inline
-              label="Tutor"
-              name="type"
-              value="Tutor"
-              type="radio"
-              checked={signupForm.type === "Tutor"}
-              onChange={handleOptionChange}
-            />
-          </p>
-          {/* tutor or student signup options */}
-          {signupForm.type === "Tutor" ? (
-            <>
-              <Row>
-                <Col>
-                  <Form.Label>Full name</Form.Label>
-                  <Form.Control
-                    name="name"
-                    type="text"
-                    value={signupForm.name}
-                    onChange={handleInputChange}
-                  />
-                </Col>
-                <Col>
-                  <Form.Label>Subjects</Form.Label>
-                  <Form.Control
-                    name="subjects"
-                    type="text"
-                    value={signupForm.subjects}
-                    onChange={handleInputChange}
-                  />
-                </Col>
-                <Col>
-                  <Form.Label>Headline</Form.Label>
-                  <Form.Control
-                    name="headline"
-                    type="text"
-                    value={signupForm.headline}
-                    onChange={handleInputChange}
-                  />
-                </Col>
-              </Row>
-              <Row style={{ marginTop: "16px" }}>
-                <Col>
-                  <Form.Label>Upload an avatar (optional):</Form.Label>
-                  <Form.Control
-                    name="avatar"
-                    type="file"
-                    onChange={handleFileChange}
-                  />
-                </Col>
-              </Row>
-            </>
-          ) : signupForm.type === "Student" ? (
-            <>
-              <Row>
-                <Col>
-                  <Form.Label>Full name:</Form.Label>
-                  <Form.Control
-                    name="name"
-                    type="text"
-                    value={signupForm.name}
-                    onChange={handleInputChange}
-                  />
-                </Col>
-                <Col>
-                  <Form.Label>Grade:</Form.Label>
-                  <Form.Control
-                    name="grade"
-                    type="text"
-                    value={signupForm.grade}
-                    onChange={handleInputChange}
-                  />
-                </Col>
-              </Row>
-            </>
-          ) : null}
-          <br />
-          <Button type="submit" variant="success">
+          <Row>
+            <Col>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                name='name'
+                type='name'
+                value={signupForm.name}
+                onChange={handleInputChange}
+              />
+            </Col>
+          </Row>
+          <Row style={{ marginTop: "16px" }}>
+            <Col>
+              <Form.Label>Upload an avatar (optional):</Form.Label>
+              <Form.Control
+                name='avatar'
+                type='file'
+                onChange={handleFileChange}
+              />
+            </Col>
+          </Row>
+          <Button type='submit' variant='success'>
             Sign up!
           </Button>
           {/* {error.map((err) => {

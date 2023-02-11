@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
 
-function LogIn({ setCurrentUser, setStudents }) {
+function LogIn({ setCurrentUser, setRecipes }) {
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -23,7 +23,7 @@ function LogIn({ setCurrentUser, setStudents }) {
       if (resp.ok) {
         resp.json().then((loggedInUser) => {
           setCurrentUser(loggedInUser);
-          setStudents(loggedInUser.students);
+          setRecipes(loggedInUser.recipes);
           navigate("/");
         });
       } else {
@@ -57,8 +57,8 @@ function LogIn({ setCurrentUser, setStudents }) {
           <Col>
             <Form.Label>Username:</Form.Label>
             <Form.Control
-              type="text"
-              name="username"
+              type='text'
+              name='username'
               value={login.username}
               onChange={handleInputChange}
             />
@@ -66,14 +66,14 @@ function LogIn({ setCurrentUser, setStudents }) {
           <Col>
             <Form.Label>Password:</Form.Label>
             <Form.Control
-              type="password"
-              name="password"
+              type='password'
+              name='password'
               value={login.password}
               onChange={handleInputChange}
             />
           </Col>
         </Row>
-        <Button type="submit" variant="success" style={{ margin: "16px" }}>
+        <Button type='submit' variant='success' style={{ margin: "16px" }}>
           Log in!
         </Button>
       </Form>
