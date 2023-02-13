@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
-import { Switch, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -66,38 +66,44 @@ function App() {
     <div>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <NavBar />
-        <Switch>
-          <Route path='/randomrecipe'>
-            <RandomRecipe
-              onRecipeLike={handleAddRecipe}
-              isLiked={isLiked}
-              setIsLiked={setIsLiked}
-            />
-          </Route>
-          <Route path='/recipeform'>
-            <RecipeForm onFormSubmit={handleAddRecipe} />
-          </Route>
-          <Route path='/recipebook'>
-            <RecipeBook
-              onRecipeDislike={handleDeleteRecipe}
-              recipes={recipes}
-              isLiked={isLiked}
-              setIsLiked={setIsLiked}
-            />
-          </Route>
-          <Route path='/login'>
-            <LogIn />
-          </Route>
-          <Route path='/signup'>
-            <SignUp />
-          </Route>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route path='*'>
-            <h1>404 not found</h1>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path='/randomrecipe'
+            element={
+              <RandomRecipe
+                onRecipeLike={handleAddRecipe}
+                isLiked={isLiked}
+                setIsLiked={setIsLiked}
+              />
+            }
+          />
+          <Route
+            path='/recipeform'
+            element={<RecipeForm onFormSubmit={handleAddRecipe} />}
+          />
+          <Route
+            path='/recipebook'
+            element={
+              <RecipeBook
+                onRecipeDislike={handleDeleteRecipe}
+                recipes={recipes}
+                isLiked={isLiked}
+                setIsLiked={setIsLiked}
+              />
+            }
+          />
+          <Route path='/login' element={<LogIn />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route exact path='/' element={<Home />} />
+          <Route
+            path='*'
+            element={
+              <>
+                <h1>404 not found</h1>
+              </>
+            }
+          />
+        </Routes>
       </UserContext.Provider>
     </div>
   );

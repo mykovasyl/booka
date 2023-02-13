@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Form from "react-bootstrap/Form";
 import { UserContext } from "./App";
 
 function SignUp() {
@@ -56,91 +54,63 @@ function SignUp() {
 
   return (
     <div>
-      <Container
+      <h2
         style={{
-          marginTop: "24px",
-          padding: "24px",
           border: ".5px solid grey",
+          marginBottom: "24px",
           borderRadius: "8px",
-          width: "75%",
+          padding: "8px",
         }}
       >
-        <h2
-          style={{
-            border: ".5px solid grey",
-            marginBottom: "24px",
-            borderRadius: "8px",
-            padding: "8px",
-          }}
-        >
-          Join our growing family of tutors and students!
-        </h2>
-        <Form onSubmit={handleSubmit}>
-          <Row>
-            <Col>
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                name='username'
-                type='username'
-                value={signupForm.username}
-                onChange={handleInputChange}
-              />
-            </Col>
-          </Row>
-          <Row style={{ marginTop: "16px" }}>
-            <Col>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                name='password'
-                type='password'
-                value={signupForm.password}
-                onChange={handleInputChange}
-              />
-              <Form.Text muted>
-                Your password must be 8-20 characters long, contain letters and
-                numbers, and must not contain spaces, special characters, or
-                emoji.
-              </Form.Text>
-            </Col>
-            <Col>
-              <Form.Label>Confirm password</Form.Label>
-              <Form.Control
-                name='password_confirmation'
-                type='password'
-                value={signupForm.password_confirmation}
-                onChange={handleInputChange}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                name='name'
-                type='name'
-                value={signupForm.name}
-                onChange={handleInputChange}
-              />
-            </Col>
-          </Row>
-          <Row style={{ marginTop: "16px" }}>
-            <Col>
-              <Form.Label>Upload an avatar (optional):</Form.Label>
-              <Form.Control
-                name='avatar'
-                type='file'
-                onChange={handleFileChange}
-              />
-            </Col>
-          </Row>
-          <Button type='submit' variant='success'>
-            Sign up!
-          </Button>
-          {/* {error.map((err) => {
+        Join our growing family of tutors and students!
+      </h2>
+      <form onSubmit={handleSubmit}>
+        <p>Username</p>
+        <input
+          name='username'
+          type='username'
+          value={signupForm.username}
+          onChange={handleInputChange}
+        />
+
+        <p>Password</p>
+        <input
+          name='password'
+          type='password'
+          value={signupForm.password}
+          onChange={handleInputChange}
+        />
+        <p>
+          Your password must be 8-20 characters long, contain letters and
+          numbers, and must not contain spaces, special characters, or emoji.
+        </p>
+
+        <p>Confirm password</p>
+        <input
+          name='password_confirmation'
+          type='password'
+          value={signupForm.password_confirmation}
+          onChange={handleInputChange}
+        />
+
+        <p>Name</p>
+        <input
+          name='name'
+          type='name'
+          value={signupForm.name}
+          onChange={handleInputChange}
+        />
+
+        <p>Upload an avatar (optional):</p>
+        <input name='avatar' type='file' onChange={handleFileChange} />
+
+        <button type='submit' variant='success'>
+          Sign up!
+        </button>
+        {/* {error.map((err) => {
             return <h4>{err}</h4>;
           })} */}
-        </Form>
-      </Container>
+      </form>
     </div>
   );
 }

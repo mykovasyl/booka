@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Col, Row, Container } from "react-bootstrap";
 
 function LogIn({ setCurrentUser, setRecipes }) {
   const [login, setLogin] = useState({
@@ -33,15 +32,7 @@ function LogIn({ setCurrentUser, setRecipes }) {
   }
 
   return (
-    <Container
-      style={{
-        marginTop: "24px",
-        padding: "24px",
-        border: ".5px solid grey",
-        borderRadius: "8px",
-        width: "75%",
-      }}
-    >
+    <>
       <h2
         style={{
           border: ".5px solid grey",
@@ -52,32 +43,28 @@ function LogIn({ setCurrentUser, setRecipes }) {
       >
         Log in:
       </h2>
-      <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col>
-            <Form.Label>Username:</Form.Label>
-            <Form.Control
-              type='text'
-              name='username'
-              value={login.username}
-              onChange={handleInputChange}
-            />
-          </Col>
-          <Col>
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type='password'
-              name='password'
-              value={login.password}
-              onChange={handleInputChange}
-            />
-          </Col>
-        </Row>
-        <Button type='submit' variant='success' style={{ margin: "16px" }}>
+      <form onSubmit={handleSubmit}>
+        <p>Username:</p>
+        <input
+          type='text'
+          name='username'
+          value={login.username}
+          onChange={handleInputChange}
+        />
+
+        <p>Password:</p>
+        <input
+          type='password'
+          name='password'
+          value={login.password}
+          onChange={handleInputChange}
+        />
+
+        <button type='submit' variant='success' style={{ margin: "16px" }}>
           Log in!
-        </Button>
-      </Form>
-    </Container>
+        </button>
+      </form>
+    </>
   );
 }
 
