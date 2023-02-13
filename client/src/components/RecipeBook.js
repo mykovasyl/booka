@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Recipe from "./Recipe";
 
-function RecipeBook({ recipes, onRecipeDislike, isLiked, setIsLiked }) {
+function RecipeBook({ recipes, onRecipeDislike, isLiked }) {
   const recipesDisplayed = recipes.map((recipe) => (
     <Recipe
       key={recipe.summary}

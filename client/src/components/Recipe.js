@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Recipe({ recipe, onRecipeLike, onRecipeDislike, setIsLiked }) {
   const {
@@ -34,17 +34,17 @@ function Recipe({ recipe, onRecipeLike, onRecipeDislike, setIsLiked }) {
       <h1>{title}</h1>
       {liked ? (
         id ? (
-          <button type="button" onClick={handleClick}>
+          <button type='button' onClick={handleClick}>
             Delete it!
           </button>
         ) : null
       ) : (
-        <button type="button" onClick={handleClick}>
+        <button type='button' onClick={handleClick}>
           Like it!
         </button>
       )}
       <h3>Ready in {readyIn} minutes</h3>
-      <img src={image} alt="food"></img>
+      <img src={image} alt='food'></img>
       <h3>Summary:</h3>
       <div dangerouslySetInnerHTML={{ __html: summary }} />
       <h3>Ingredients:</h3>
