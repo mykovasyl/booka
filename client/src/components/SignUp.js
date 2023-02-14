@@ -35,7 +35,7 @@ function SignUp() {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
-          setAvatar(user.image_url);
+          // setAvatar(user.image_url);
           navigate("/");
         });
       } else {

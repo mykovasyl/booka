@@ -24,7 +24,7 @@ function App() {
         resp.json().then((user) => {
           setCurrentUser(user);
           setRecipes([]);
-          setAvatar(user.image_url);
+          // setAvatar(user.image_url);
         });
       } else {
         resp.json().then((error) => setErrors(error));
@@ -64,7 +64,7 @@ function App() {
 
   return (
     <div>
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserContext.Provider value={{ currentUser, setCurrentUser, avatar }}>
         <NavBar />
         <Routes>
           <Route
