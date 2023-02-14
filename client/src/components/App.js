@@ -22,7 +22,7 @@ function App() {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
-          setRecipes([]);
+          setRecipes(user.recipes || []);
           // setAvatar(user.image_url);
         });
       } else {
@@ -70,7 +70,7 @@ function App() {
             path='/randomrecipe'
             element={
               <RandomRecipe
-                onRecipeLike={handleAddRecipe}
+                handleAddRecipe={handleAddRecipe}
               />
             }
           />
@@ -82,7 +82,7 @@ function App() {
             path='/recipebook'
             element={
               <RecipeBook
-                onRecipeDislike={handleDeleteRecipe}
+                handleDeleteRecipe={handleDeleteRecipe}
                 recipes={recipes}
               />
             }

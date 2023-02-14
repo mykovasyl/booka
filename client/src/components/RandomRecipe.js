@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Recipe from "./Recipe";
 
-function RandomRecipe({ onRecipeLike }) {
+function RandomRecipe({ handleAddRecipe }) {
   const [recipe, setRecipe] = useState({
     title: "",
     readyIn: "",
@@ -42,7 +42,7 @@ function RandomRecipe({ onRecipeLike }) {
       {isLoaded ? (
         <Recipe
           recipe={recipe}
-          onRecipeLike={onRecipeLike}
+          handleAddRecipe={handleAddRecipe}
         />
       ) : null}
     </div>

@@ -62,7 +62,7 @@ function SignUp() {
           padding: "8px",
         }}
       >
-        Join our growing family of tutors and students!
+        Join now and get cooking!
       </h2>
       <form onSubmit={handleSubmit}>
         <p>Username</p>

@@ -2,12 +2,12 @@
 import React from "react";
 import Recipe from "./Recipe";
 
-function RecipeBook({ recipes, onRecipeDislike }) {
+function RecipeBook({ recipes, handleDeleteRecipe }) {
   const recipesDisplayed = recipes.map((recipe) => (
     <Recipe
       key={recipe.summary}
       recipe={recipe}
-      onRecipeDislike={onRecipeDislike}
+      handleDeleteRecipe={handleDeleteRecipe}
     />
   ));
 
