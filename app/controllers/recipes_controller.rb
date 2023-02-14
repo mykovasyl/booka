@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
   end
 
   def new_recipe_params
-    params.permit(:title, :readyIn, :image, :summary, :instructions, :ingredients, :sourceURL, :liked)
+    params.permit(:title, :readyIn, :image, :summary, :instructions, :ingredients, :sourceURL, :liked, :user_id)
   end
 
   def update_recipe_params

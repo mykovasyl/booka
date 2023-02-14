@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "./App";
 
 function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
+  const { currentUser } = useContext(UserContext);
   const {
     title,
     readyIn,
@@ -10,6 +12,7 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
     instructions,
     sourceUrl,
     liked,
+    user_id,
     id = null,
   } = recipe;
 
@@ -22,6 +25,7 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
   function handleClick() {
     if (!liked) {
       recipe.liked = true;
+      recipe.user_id = currentUser.id;
       handleAddRecipe(recipe);
     } else if (liked) {
       handleDeleteRecipe(id);
