@@ -1,6 +1,6 @@
 import React from "react";
 
-function Recipe({ recipe, onRecipeLike, onRecipeDislike, setIsLiked }) {
+function Recipe({ recipe, onRecipeLike, onRecipeDislike }) {
   const {
     title,
     readyIn,
@@ -22,7 +22,6 @@ function Recipe({ recipe, onRecipeLike, onRecipeDislike, setIsLiked }) {
   function handleClick() {
     if (!liked) {
       recipe.liked = true;
-      setIsLiked(true);
       onRecipeLike(recipe);
     } else if (liked) {
       onRecipeDislike(id);

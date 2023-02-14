@@ -13,7 +13,6 @@ export const UserContext = createContext();
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [recipes, setRecipes] = useState([]);
-  const [isLiked, setIsLiked] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
 
@@ -72,8 +71,6 @@ function App() {
             element={
               <RandomRecipe
                 onRecipeLike={handleAddRecipe}
-                isLiked={isLiked}
-                setIsLiked={setIsLiked}
               />
             }
           />
@@ -87,8 +84,6 @@ function App() {
               <RecipeBook
                 onRecipeDislike={handleDeleteRecipe}
                 recipes={recipes}
-                isLiked={isLiked}
-                setIsLiked={setIsLiked}
               />
             }
           />

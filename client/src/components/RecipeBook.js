@@ -1,14 +1,13 @@
 // filter between liked and self created recipes
-import React, { useState } from "react";
+import React from "react";
 import Recipe from "./Recipe";
 
-function RecipeBook({ recipes, onRecipeDislike, isLiked }) {
+function RecipeBook({ recipes, onRecipeDislike }) {
   const recipesDisplayed = recipes.map((recipe) => (
     <Recipe
       key={recipe.summary}
       recipe={recipe}
       onRecipeDislike={onRecipeDislike}
-      isLiked={isLiked}
     />
   ));
 
