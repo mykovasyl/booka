@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Recipe from "./Recipe";
 
-function RandomRecipe({ onRecipeLike, isLiked, setIsLiked }) {
+function RandomRecipe({ onRecipeLike }) {
   const [recipe, setRecipe] = useState({
     title: "",
     readyIn: "",
@@ -30,7 +30,6 @@ function RandomRecipe({ onRecipeLike, isLiked, setIsLiked }) {
           sourceUrl: data.recipes[0].spoonacularSourceUrl,
           liked: false,
         });
-        setIsLiked(false);
         setIsLoaded(true);
       });
   }
@@ -44,8 +43,6 @@ function RandomRecipe({ onRecipeLike, isLiked, setIsLiked }) {
         <Recipe
           recipe={recipe}
           onRecipeLike={onRecipeLike}
-          isLiked={isLiked}
-          setIsLiked={setIsLiked}
         />
       ) : null}
     </div>
