@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function RecipeForm({ onFormSubmit }) {
+function RecipeForm({ handleAddRecipe }) {
   const [newRecipe, setNewRecipe] = useState({
     title: "",
     readyIn: "",
@@ -9,7 +9,6 @@ function RecipeForm({ onFormSubmit }) {
     instructions: "",
     ingredients: [],
     sourceUrl: "",
-    liked: false,
   });
 
   const [ingredientsList, setIngredientsList] = useState([
@@ -70,7 +69,7 @@ function RecipeForm({ onFormSubmit }) {
       ...newRecipe,
       ingredients: ingredientsList,
     };
-    onFormSubmit(recipeWithIngredients);
+    handleAddRecipe(recipeWithIngredients);
     setIngredientsList([{ name: "", amount: "", unit: "" }]);
     setNewRecipe({
       title: "",
@@ -80,7 +79,6 @@ function RecipeForm({ onFormSubmit }) {
       instructions: "",
       ingredients: [],
       sourceUrl: "",
-      liked: false,
     });
   }
 

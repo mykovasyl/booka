@@ -12,7 +12,6 @@ export const UserContext = createContext();
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [recipes, setRecipes] = useState([]);
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
 
@@ -22,7 +21,6 @@ function App() {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
-          setRecipes(user.recipes || []);
           // setAvatar(user.image_url);
         });
       } else {
@@ -37,19 +35,19 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...recipe, liked: true }),
+      body: JSON.stringify({ ...recipe }),
     })
       .then((resp) => resp.json())
-      .then((postedRecipe) => setRecipes([...recipes, postedRecipe]));
+      .then((postedRecipe) => setCurrentUser(...currentUser, currentUser.recipes.push(postedRecipe)));
   }
 
   // delete a recipe from your recipe book
   function handleDeleteRecipe(id) {
-    const newRecipes = recipes.filter((recipe) => recipe.id !== id);
+    const newRecipes = currentUser.recipes.filter((recipe) => recipe.id !== id);
     fetch(`/recipes/${id}`, {
       method: "DELETE",
     });
-    setRecipes(newRecipes);
+    setCurrentUser({...currentUser, recipes: newRecipes});
   }
 
   // useEffect(() => {
@@ -76,14 +74,13 @@ function App() {
           />
           <Route
             path='/recipeform'
-            element={<RecipeForm onFormSubmit={handleAddRecipe} />}
+            element={<RecipeForm handleAddRecipe={handleAddRecipe} />}
           />
           <Route
             path='/recipebook'
             element={
               <RecipeBook
                 handleDeleteRecipe={handleDeleteRecipe}
-                recipes={recipes}
               />
             }
           />

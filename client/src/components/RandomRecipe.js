@@ -11,7 +11,6 @@ function RandomRecipe({ handleAddRecipe }) {
     ingredients: [],
     sourceUrl: "",
     user_id: null,
-    liked: false,
   });
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -29,7 +28,6 @@ function RandomRecipe({ handleAddRecipe }) {
           instructions: data.recipes[0].instructions,
           ingredients: data.recipes[0].extendedIngredients,
           sourceUrl: data.recipes[0].spoonacularSourceUrl,
-          liked: false,
           user_id: null
         });
         setIsLoaded(true);
