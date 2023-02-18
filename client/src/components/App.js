@@ -50,15 +50,6 @@ function App() {
     setCurrentUser({...currentUser, recipes: newRecipes});
   }
 
-  // useEffect(() => {
-  //   // fetch(`${process.env.REACT_APP_API_URL}/recipes`)
-  //   fetch(`/recipes`)
-  //     .then((resp) => resp.json())
-  //     .then((jsonRecipes) => {
-  //       setRecipes(jsonRecipes);
-  //     });
-  // }, []);
-
   return (
     <div>
       <UserContext.Provider value={{ currentUser, setCurrentUser, avatar }}>
