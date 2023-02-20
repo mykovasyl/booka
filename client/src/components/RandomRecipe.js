@@ -9,7 +9,7 @@ function RandomRecipe({ handleAddRecipe }) {
     summary: "",
     instructions: "",
     ingredients: [],
-    sourceUrl: "",
+    sourceURL: "",
     user_id: null,
   });
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,8 +27,8 @@ function RandomRecipe({ handleAddRecipe }) {
           summary: data.recipes[0].summary,
           instructions: data.recipes[0].instructions,
           ingredients: data.recipes[0].extendedIngredients,
-          sourceUrl: data.recipes[0].spoonacularSourceUrl,
-          user_id: null
+          sourceURL: data.recipes[0].spoonacularSourceUrl,
+          user_id: null,
         });
         setIsLoaded(true);
       });
@@ -36,14 +36,11 @@ function RandomRecipe({ handleAddRecipe }) {
 
   return (
     <div>
-      <button type="button" onClick={handleClick}>
+      <button type='button' onClick={handleClick}>
         Get Random Recipe
       </button>
       {isLoaded ? (
-        <Recipe
-          recipe={recipe}
-          handleAddRecipe={handleAddRecipe}
-        />
+        <Recipe recipe={recipe} handleAddRecipe={handleAddRecipe} />
       ) : null}
     </div>
   );
