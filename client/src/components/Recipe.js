@@ -11,8 +11,7 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
     ingredients,
     instructions,
     sourceUrl,
-    liked,
-    user_id,
+    user_id = null,
     id = null,
   } = recipe;
 
@@ -22,27 +21,26 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
     </li>
   ));
 
-  function handleClick() {
-    if (!liked) {
-      recipe.liked = true;
-      recipe.user_id = currentUser.id;
+  function addRecipe() {
+    recipe.user_id = currentUser.id;
       handleAddRecipe(recipe);
-    } else if (liked) {
-      handleDeleteRecipe(id);
-    }
+  }
+
+  function deleteRecipe() {
+    handleDeleteRecipe(id);
   }
 
   return (
     <div>
       <h1>{title}</h1>
-      {liked ? (
+      {user_id ? (
         id ? (
-          <button type='button' onClick={handleClick}>
+          <button type='button' onClick={deleteRecipe}>
             Delete it!
           </button>
         ) : null
       ) : (
-        <button type='button' onClick={handleClick}>
+        <button type='button' onClick={addRecipe}>
           Like it!
         </button>
       )}

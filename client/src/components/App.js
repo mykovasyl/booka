@@ -35,10 +35,12 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...recipe }),
+      body: JSON.stringify(recipe),
     })
       .then((resp) => resp.json())
-      .then((postedRecipe) => setCurrentUser(...currentUser, currentUser.recipes.push(postedRecipe)));
+      .then((postedRecipe) => console.log(postedRecipe) 
+      // setCurrentUser(...currentUser, currentUser.recipes.push(postedRecipe))
+      );
   }
 
   // delete a recipe from your recipe book
