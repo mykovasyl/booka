@@ -38,18 +38,19 @@ function App() {
       body: JSON.stringify(recipe),
     })
       .then((resp) => resp.json())
-      .then((postedRecipe) => console.log(postedRecipe) 
-      // setCurrentUser(...currentUser, currentUser.recipes.push(postedRecipe))
-      );
+      .then((postedRecipe) => {
+        let newRecipes = [...currentUser.recipes, postedRecipe];
+        setCurrentUser({ ...currentUser, recipes: newRecipes });
+      });
   }
 
   // delete a recipe from your recipe book
   function handleDeleteRecipe(id) {
-    const newRecipes = currentUser.recipes.filter((recipe) => recipe.id !== id);
+    let newRecipes = currentUser.recipes.filter((recipe) => recipe.id !== id);
     fetch(`/recipes/${id}`, {
       method: "DELETE",
     });
-    setCurrentUser({...currentUser, recipes: newRecipes});
+    setCurrentUser({ ...currentUser, recipes: newRecipes });
   }
 
   return (
@@ -59,11 +60,7 @@ function App() {
         <Routes>
           <Route
             path='/randomrecipe'
-            element={
-              <RandomRecipe
-                handleAddRecipe={handleAddRecipe}
-              />
-            }
+            element={<RandomRecipe handleAddRecipe={handleAddRecipe} />}
           />
           <Route
             path='/recipeform'
@@ -71,11 +68,7 @@ function App() {
           />
           <Route
             path='/recipebook'
-            element={
-              <RecipeBook
-                handleDeleteRecipe={handleDeleteRecipe}
-              />
-            }
+            element={<RecipeBook handleDeleteRecipe={handleDeleteRecipe} />}
           />
           <Route path='/login' element={<LogIn />} />
           <Route path='/signup' element={<SignUp />} />
