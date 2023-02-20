@@ -23,7 +23,7 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
 
   function addRecipe() {
     recipe.user_id = currentUser.id;
-      handleAddRecipe(recipe);
+    handleAddRecipe(recipe);
   }
 
   function deleteRecipe() {
@@ -33,7 +33,14 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
   return (
     <div>
       <h1>{title}</h1>
-      {user_id ? (
+      {id ? (
+          <button type='button' onClick={deleteRecipe}>
+            Delete it!
+          </button>
+        ) : <button type='button' onClick={addRecipe}>
+        Like it!
+      </button>}
+      {/* {user_id ? (
         id ? (
           <button type='button' onClick={deleteRecipe}>
             Delete it!
@@ -43,7 +50,7 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
         <button type='button' onClick={addRecipe}>
           Like it!
         </button>
-      )}
+      )} */}
       <h3>Ready in {readyIn} minutes</h3>
       <img src={image} alt='food'></img>
       <h3>Summary:</h3>
