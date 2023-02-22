@@ -68,9 +68,11 @@ function RecipeForm({ handleAddRecipe }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // turn ingredients from array of objects into array of strings
     let newIngredients = ingredientsList.map((ingredient) => {
       return `${ingredient.name}: ${ingredient.amount} ${ingredient.unit}`;
     });
+    // replace ingredients array
     const recipeWithIngredients = {
       ...newRecipe,
       ingredients: newIngredients,

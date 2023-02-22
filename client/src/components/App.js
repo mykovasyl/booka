@@ -29,6 +29,7 @@ function App() {
     });
   }, []);
 
+  // add a recipe from random recipe or your own
   function handleAddRecipe(recipe) {
     fetch(`/recipes`, {
       method: "POST",
@@ -39,6 +40,7 @@ function App() {
     })
       .then((resp) => resp.json())
       .then((postedRecipe) => {
+        // add newly posted recipe with id into currentUser state
         let newRecipes = [...currentUser.recipes, postedRecipe];
         setCurrentUser({ ...currentUser, recipes: newRecipes });
       });
