@@ -10,15 +10,13 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
     summary,
     ingredients,
     instructions,
-    sourceUrl,
+    sourceURL,
     user_id = null,
     id = null,
   } = recipe;
 
   const mappedIngredients = ingredients.map((ingredient) => (
-    <li key={ingredient.name}>
-      {ingredient.name}: {ingredient.amount} {ingredient.unit}
-    </li>
+    <li key={ingredient}>{ingredient}</li>
   ));
 
   function addRecipe() {
@@ -53,7 +51,7 @@ function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
       <h3>Instructions:</h3>
       <div dangerouslySetInnerHTML={{ __html: instructions }} />
       <p>
-        For more information visit: <a href={sourceUrl}>Spoonacular</a>
+        For more information visit: <a href={sourceURL}>Spoonacular</a>
       </p>
     </div>
   );

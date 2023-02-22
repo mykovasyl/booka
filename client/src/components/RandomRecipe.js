@@ -20,13 +20,18 @@ function RandomRecipe({ handleAddRecipe }) {
     )
       .then((resp) => resp.json())
       .then((data) => {
+        let newIngredients = data.recipes[0].extendedIngredients.map(
+          (ingredient) => {
+            return `${ingredient.name}: ${ingredient.amount} ${ingredient.unit}`;
+          }
+        );
         setRecipe({
           title: data.recipes[0].title,
           readyIn: data.recipes[0].readyInMinutes,
           image: data.recipes[0].image,
           summary: data.recipes[0].summary,
           instructions: data.recipes[0].instructions,
-          ingredients: data.recipes[0].extendedIngredients,
+          ingredients: newIngredients,
           sourceURL: data.recipes[0].spoonacularSourceUrl,
           user_id: null,
         });

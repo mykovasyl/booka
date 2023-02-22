@@ -6,9 +6,8 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.string :image
       t.string :summary
       t.string :instructions
-      t.text :ingredients, array: true, default: []
       t.text :sourceURL
-      t.boolean :liked
+      t.string :ingredients, array: true, default: []
 
       t.timestamps
     end
