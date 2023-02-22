@@ -8,7 +8,6 @@ class RecipesController < ApplicationController
 
   def create
     recipe = Recipe.create!(new_recipe_params)
-    byebug
     render json: recipe, status: :accepted
   end
 
