@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
 
   def create
     recipe = Recipe.create!(new_recipe_params)
+    recipe.update({ingredients: params[:ingredients]})
     render json: recipe, status: :accepted
   end
 

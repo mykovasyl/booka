@@ -7,7 +7,7 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.string :summary
       t.string :instructions
       t.text :sourceURL
-      t.text :ingredients, array: true, default: []
+      t.string :ingredients, array: true, default: []
 
       t.timestamps
     end

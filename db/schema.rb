@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_153749) do
     t.string "summary"
     t.string "instructions"
     t.text "sourceURL"
-    t.text "ingredients", default: [], array: true
+    t.string "ingredients", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
