@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "./App";
 
 function RecipeForm({ handleAddRecipe }) {
+  const { currentUser } = useContext(UserContext);
   const [newRecipe, setNewRecipe] = useState({
     title: "",
     readyIn: "",
@@ -9,6 +11,7 @@ function RecipeForm({ handleAddRecipe }) {
     instructions: "",
     ingredients: [],
     sourceUrl: "",
+    user_id: currentUser.id,
   });
 
   const [ingredientsList, setIngredientsList] = useState([
@@ -43,20 +46,20 @@ function RecipeForm({ handleAddRecipe }) {
   const ingredients = ingredientsList.map((ingredient, index) => (
     <div key={index}>
       <input
-        name="name"
-        placeholder="Name..."
+        name='name'
+        placeholder='Name...'
         value={ingredient.name}
         onChange={(event) => handleOnChange(index, event)}
       />
       <input
-        name="amount"
-        placeholder="Amount..."
+        name='amount'
+        placeholder='Amount...'
         value={ingredient.amount}
         onChange={(event) => handleOnChange(index, event)}
       />
       <input
-        name="unit"
-        placeholder="Unit..."
+        name='unit'
+        placeholder='Unit...'
         value={ingredient.unit}
         onChange={(event) => handleOnChange(index, event)}
       />
@@ -65,9 +68,12 @@ function RecipeForm({ handleAddRecipe }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    let newIngredients = ingredientsList.map((ingredient) => {
+      return `${ingredient.name}: ${ingredient.amount} ${ingredient.unit}`;
+    });
     const recipeWithIngredients = {
       ...newRecipe,
-      ingredients: ingredientsList,
+      ingredients: newIngredients,
     };
     handleAddRecipe(recipeWithIngredients);
     setIngredientsList([{ name: "", amount: "", unit: "" }]);
@@ -79,6 +85,7 @@ function RecipeForm({ handleAddRecipe }) {
       instructions: "",
       ingredients: [],
       sourceUrl: "",
+      user_id: currentUser.id,
     });
   }
 
@@ -87,8 +94,8 @@ function RecipeForm({ handleAddRecipe }) {
       <form onSubmit={handleSubmit}>
         <label>Recipe Name:</label>
         <input
-          type="text"
-          name="title"
+          type='text'
+          name='title'
           value={newRecipe.title}
           onChange={handleChange}
         ></input>
@@ -96,8 +103,8 @@ function RecipeForm({ handleAddRecipe }) {
 
         <label>Ready in:</label>
         <input
-          type="text"
-          name="readyIn"
+          type='text'
+          name='readyIn'
           value={newRecipe.readyIn}
           onChange={handleChange}
         ></input>
@@ -107,9 +114,9 @@ function RecipeForm({ handleAddRecipe }) {
         <label>Summary:</label>
         <br></br>
         <textarea
-          name="summary"
-          rows="5"
-          cols="50"
+          name='summary'
+          rows='5'
+          cols='50'
           value={newRecipe.summary}
           onChange={handleChange}
         ></textarea>
@@ -117,8 +124,8 @@ function RecipeForm({ handleAddRecipe }) {
 
         <label>Image:</label>
         <input
-          type="text"
-          name="image"
+          type='text'
+          name='image'
           value={newRecipe.image}
           onChange={handleChange}
         ></input>
@@ -127,7 +134,7 @@ function RecipeForm({ handleAddRecipe }) {
         <label>Ingredients:</label>
         <br></br>
         {ingredients}
-        <button type="button" onClick={handleIngredientAdd}>
+        <button type='button' onClick={handleIngredientAdd}>
           Add more ingredients
         </button>
         <br></br>
@@ -135,9 +142,9 @@ function RecipeForm({ handleAddRecipe }) {
         <label>Instructions:</label>
         <br></br>
         <textarea
-          name="instructions"
-          rows="5"
-          cols="50"
+          name='instructions'
+          rows='5'
+          cols='50'
           value={newRecipe.instructions}
           onChange={handleChange}
         ></textarea>
@@ -145,14 +152,14 @@ function RecipeForm({ handleAddRecipe }) {
 
         <label>Optional source link:</label>
         <input
-          type="text"
-          name="sourceUrl"
+          type='text'
+          name='sourceUrl'
           value={newRecipe.sourceUrl}
           onChange={handleChange}
         ></input>
         <br></br>
 
-        <button type="submit">Add Recipe To Book</button>
+        <button type='submit'>Add Recipe To Book</button>
       </form>
     </div>
   );
