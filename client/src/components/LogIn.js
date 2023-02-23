@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "./App";
 
-function LogIn({ setCurrentUser, setRecipes }) {
+function LogIn() {
   const [login, setLogin] = useState({
     username: "",
     password: "",
   });
+  const { setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   function handleInputChange(e) {
@@ -22,7 +24,6 @@ function LogIn({ setCurrentUser, setRecipes }) {
       if (resp.ok) {
         resp.json().then((loggedInUser) => {
           setCurrentUser(loggedInUser);
-          setRecipes(loggedInUser.recipes);
           navigate("/");
         });
       } else {

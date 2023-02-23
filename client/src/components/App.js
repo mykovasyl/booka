@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -14,6 +14,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
+
+  const navigate = useNavigate();
 
   // fetch current user else no user logged in
   useEffect(() => {
@@ -55,9 +57,19 @@ function App() {
     setCurrentUser({ ...currentUser, recipes: newRecipes });
   }
 
+  function handleLogOut() {
+    fetch("/logout", {
+      method: "DELETE",
+    });
+    setCurrentUser({});
+    navigate("/");
+  }
+
   return (
     <div>
-      <UserContext.Provider value={{ currentUser, setCurrentUser, avatar }}>
+      <UserContext.Provider
+        value={{ currentUser, setCurrentUser, avatar, handleLogOut }}
+      >
         <NavBar />
         <Routes>
           <Route
