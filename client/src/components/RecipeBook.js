@@ -3,14 +3,10 @@ import React, { useContext } from "react";
 import { UserContext } from "./App";
 import Recipe from "./Recipe";
 
-function RecipeBook({ handleDeleteRecipe }) {
+function RecipeBook() {
   const { currentUser } = useContext(UserContext);
   const recipesDisplayed = currentUser.recipes.map((recipe) => (
-    <Recipe
-      key={recipe.summary}
-      recipe={recipe}
-      handleDeleteRecipe={handleDeleteRecipe}
-    />
+    <Recipe key={recipe.summary} recipe={recipe} />
   ));
 
   return (

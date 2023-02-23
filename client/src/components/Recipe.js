@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { UserContext } from "./App";
 
-function Recipe({ recipe, handleAddRecipe, handleDeleteRecipe }) {
-  const { currentUser } = useContext(UserContext);
+function Recipe({ recipe }) {
+  const { currentUser, handleDeleteRecipe, handleAddRecipe } =
+    useContext(UserContext);
   const {
     title,
     readyIn,

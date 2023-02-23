@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "./App";
 import Recipe from "./Recipe";
 
-function RandomRecipe({ handleAddRecipe }) {
+function RandomRecipe() {
   const [recipe, setRecipe] = useState({
     title: "",
     readyIn: "",
@@ -12,6 +13,7 @@ function RandomRecipe({ handleAddRecipe }) {
     sourceURL: "",
     user_id: null,
   });
+  const { handleAddRecipe } = useContext(UserContext);
   const [isLoaded, setIsLoaded] = useState(false);
 
   function handleClick() {

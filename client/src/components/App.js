@@ -68,22 +68,20 @@ function App() {
   return (
     <div>
       <UserContext.Provider
-        value={{ currentUser, setCurrentUser, avatar, handleLogOut }}
+        value={{
+          currentUser,
+          setCurrentUser,
+          avatar,
+          handleLogOut,
+          handleAddRecipe,
+          handleDeleteRecipe,
+        }}
       >
         <NavBar />
         <Routes>
-          <Route
-            path='/randomrecipe'
-            element={<RandomRecipe handleAddRecipe={handleAddRecipe} />}
-          />
-          <Route
-            path='/recipeform'
-            element={<RecipeForm handleAddRecipe={handleAddRecipe} />}
-          />
-          <Route
-            path='/recipebook'
-            element={<RecipeBook handleDeleteRecipe={handleDeleteRecipe} />}
-          />
+          <Route path='/randomrecipe' element={<RandomRecipe />} />
+          <Route path='/recipeform' element={<RecipeForm />} />
+          <Route path='/recipebook' element={<RecipeBook />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/signup' element={<SignUp />} />
           <Route exact path='/' element={<Home />} />

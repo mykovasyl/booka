@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 
-function RecipeForm({ handleAddRecipe }) {
-  const { currentUser } = useContext(UserContext);
+function RecipeForm() {
+  const { currentUser, handleAddRecipe } = useContext(UserContext);
   const [newRecipe, setNewRecipe] = useState({
     title: "",
     readyIn: "",
