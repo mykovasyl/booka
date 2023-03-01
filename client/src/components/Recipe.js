@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "./App";
+import Button from "@mui/material/Button";
 
 function Recipe({ recipe }) {
   const { currentUser, handleDeleteRecipe, handleAddRecipe } =
@@ -34,14 +35,14 @@ function Recipe({ recipe }) {
       <h1>{title}</h1>
       {user_id ? (
         id ? (
-          <button type='button' onClick={deleteRecipe}>
+          <Button type='button' variant='contained' onClick={deleteRecipe}>
             Delete it!
-          </button>
+          </Button>
         ) : null
       ) : (
-        <button type='button' onClick={addRecipe}>
+        <Button type='button' variant='contained' onClick={addRecipe}>
           Like it!
-        </button>
+        </Button>
       )}
       <h3>Ready in {readyIn} minutes</h3>
       <img src={image} alt='food'></img>

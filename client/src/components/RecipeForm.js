@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 
@@ -161,7 +162,9 @@ function RecipeForm() {
         ></input>
         <br></br>
 
-        <button type='submit'>Add Recipe To Book</button>
+        <Button type='submit' variant='contained'>
+          Add Recipe To Book
+        </Button>
       </form>
     </div>
   );

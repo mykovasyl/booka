@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 import Recipe from "./Recipe";
@@ -43,9 +44,9 @@ function RandomRecipe() {
 
   return (
     <div>
-      <button type='button' onClick={handleClick}>
+      <Button type='button' variant='contained' onClick={handleClick}>
         Get Random Recipe
-      </button>
+      </Button>
       {isLoaded ? (
         <Recipe recipe={recipe} handleAddRecipe={handleAddRecipe} />
       ) : null}

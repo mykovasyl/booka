@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./App";
+import Button from "@mui/material/Button";
 
 function LogIn() {
   const [login, setLogin] = useState({
@@ -61,9 +62,9 @@ function LogIn() {
           onChange={handleInputChange}
         />
 
-        <button type='submit' variant='success' style={{ margin: "16px" }}>
+        <Button type='submit' variant='contained' style={{ margin: "16px" }}>
           Log in!
-        </button>
+        </Button>
       </form>
     </>
   );

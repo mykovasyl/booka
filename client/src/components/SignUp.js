@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./App";
@@ -104,9 +105,9 @@ function SignUp() {
         <p>Upload an avatar (optional):</p>
         <input name='avatar' type='file' onChange={handleFileChange} />
 
-        <button type='submit' variant='success'>
+        <Button type='submit' variant='contained'>
           Sign up!
-        </button>
+        </Button>
         {/* {error.map((err) => {
             return <h4>{err}</h4>;
           })} */}
