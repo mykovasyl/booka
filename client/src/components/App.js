@@ -29,6 +29,8 @@ function App() {
 
   const navigate = useNavigate();
 
+  // start of drawer code -- DO NOT EDIT BELOW THIS LINE --
+
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -87,7 +89,7 @@ function App() {
     justifyContent: "flex-end",
   }));
 
-  // end of drawer code
+  // end of drawer code -- DO NOT EDIT ABOVE THIS LINE --
 
   // fetch current user else no user logged in
   useEffect(() => {
@@ -194,7 +196,6 @@ function App() {
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
-
           <Routes>
             <Route path='/randomrecipe' element={<RandomRecipe />} />
             <Route path='/recipeform' element={<RecipeForm />} />
@@ -214,36 +215,6 @@ function App() {
         </Main>
       </Box>
     </UserContext.Provider>
-    // <div>
-    // <UserContext.Provider
-    //   value={{
-    //     currentUser,
-    //     setCurrentUser,
-    //     avatar,
-    //     handleLogOut,
-    //     handleAddRecipe,
-    //     handleDeleteRecipe,
-    //   }}
-    // >
-    //     <NavBar />
-    //     <Routes>
-    //       <Route path='/randomrecipe' element={<RandomRecipe />} />
-    //       <Route path='/recipeform' element={<RecipeForm />} />
-    //       <Route path='/recipebook' element={<RecipeBook />} />
-    //       <Route path='/login' element={<LogIn />} />
-    //       <Route path='/signup' element={<SignUp />} />
-    //       <Route exact path='/' element={<Home />} />
-    //       <Route
-    //         path='*'
-    //         element={
-    //           <>
-    //             <h1>404 not found</h1>
-    //           </>
-    //         }
-    //       />
-    //     </Routes>
-    //   </UserContext.Provider>
-    // </div>
   );
 }
 
