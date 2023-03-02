@@ -17,21 +17,10 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { AppBar } from "@mui/material";
+import MuiAppBar from "@mui/material/AppBar";
+import { styled, useTheme } from "@mui/material/styles";
 
 export const UserContext = createContext();
-
-// export function PersistentDrawerLeft() {
-//   const theme = useTheme();
-//   const [open, setOpen] = React.useState(false);
-
-//   const handleDrawerOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleDrawerClose = () => {
-//     setOpen(false);
-//   };
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -39,6 +28,17 @@ function App() {
   const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
+
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
+
+  function handleDrawerOpen() {
+    setOpen(true);
+  }
+
+  function handleDrawerClose() {
+    setOpen(false);
+  }
 
   const drawerWidth = 240;
 
@@ -138,62 +138,63 @@ function App() {
   }
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar position='fixed' open={open}>
-        <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6' noWrap component='div'>
-            booka
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
+    <UserContext.Provider
+      value={{
+        currentUser,
+        setCurrentUser,
+        avatar,
+        handleLogOut,
+        handleAddRecipe,
+        handleDeleteRecipe,
+      }}
+    >
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar position='fixed' open={open}>
+          <Toolbar>
+            <IconButton
+              color='inherit'
+              aria-label='open drawer'
+              onClick={handleDrawerOpen}
+              edge='start'
+              sx={{ mr: 2, ...(open && { display: "none" }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant='h6' noWrap component='div'>
+              booka
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          sx={{
             width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant='persistent'
-        anchor='left'
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <NavBar />
-        <Divider />
-      </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-        <UserContext.Provider
-          value={{
-            currentUser,
-            setCurrentUser,
-            avatar,
-            handleLogOut,
-            handleAddRecipe,
-            handleDeleteRecipe,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
           }}
+          variant='persistent'
+          anchor='left'
+          open={open}
         >
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <NavBar />
+          <Divider />
+        </Drawer>
+        <Main open={open}>
+          <DrawerHeader />
+
           <Routes>
             <Route path='/randomrecipe' element={<RandomRecipe />} />
             <Route path='/recipeform' element={<RecipeForm />} />
@@ -210,9 +211,9 @@ function App() {
               }
             />
           </Routes>
-        </UserContext.Provider>
-      </Main>
-    </Box>
+        </Main>
+      </Box>
+    </UserContext.Provider>
     // <div>
     // <UserContext.Provider
     //   value={{

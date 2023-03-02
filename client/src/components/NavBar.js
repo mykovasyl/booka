@@ -14,7 +14,6 @@ function NavBar() {
   const { currentUser, handleLogOut } = useContext(UserContext);
   return (
     <List>
-      <Link to='/'>Home</Link>
       {currentUser.id ? (
         <>
           <ListItem disablePadding>
