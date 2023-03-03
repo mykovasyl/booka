@@ -167,7 +167,7 @@ function App() {
               <img
                 style={{ paddingTop: "10px" }}
                 width='300'
-                height='100'
+                height='75'
                 src='https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-6/329030105_235534325510771_8221156343359983289_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=qNuNiOG6lvwAX95deSN&_nc_ht=scontent-lga3-2.xx&oh=00_AfB9hvll48Z74SapsZxYqX8fbm8afSArKLPMwoUvfBmjPw&oe=6408315E'
               />
             </Typography>
@@ -199,7 +199,7 @@ function App() {
           <NavBar />
           <Divider />
         </Drawer>
-        <Main open={open}>
+        <Main open={open} style={{ paddingTop: "40px" }}>
           <DrawerHeader />
           <Routes>
             <Route path='/randomrecipe' element={<RandomRecipe />} />
