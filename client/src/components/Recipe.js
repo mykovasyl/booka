@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "./App";
 import Button from "@mui/material/Button";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -12,6 +13,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 // import { red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Grid } from "@mui/material";
 
 function Recipe({ recipe }) {
   const { currentUser, handleDeleteRecipe, handleAddRecipe } =
@@ -74,19 +76,22 @@ function Recipe({ recipe }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label='add to favorites'>
-          {user_id ? (
-            id ? (
-              <Button type='button' variant='contained' onClick={deleteRecipe}>
-                Delete it!
-              </Button>
-            ) : null
-          ) : (
-            <Button type='button' variant='contained' onClick={addRecipe}>
-              Like it!
+        {user_id ? (
+          id ? (
+            <Button type='button' variant='contained' onClick={deleteRecipe}>
+              Delete it!
             </Button>
-          )}
-        </IconButton>
+          ) : null
+        ) : (
+          <IconButton
+            aria-label='add to favorites'
+            type='button'
+            variant='contained'
+            onClick={addRecipe}
+          >
+            <FavoriteIcon />
+          </IconButton>
+        )}
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

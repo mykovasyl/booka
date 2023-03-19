@@ -1,4 +1,5 @@
 // filter between liked and self created recipes
+import { Grid } from "@mui/material";
 import React, { useContext } from "react";
 import { UserContext } from "./App";
 import Recipe from "./Recipe";
@@ -6,7 +7,9 @@ import Recipe from "./Recipe";
 function RecipeBook() {
   const { currentUser } = useContext(UserContext);
   const recipesDisplayed = currentUser.recipes.map((recipe) => (
-    <Recipe key={recipe.summary} recipe={recipe} />
+    <Grid container spacing={2}>
+      <Recipe key={recipe.summary} recipe={recipe} />
+    </Grid>
   ));
 
   return (
