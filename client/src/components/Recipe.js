@@ -13,7 +13,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 // import { red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Grid } from "@mui/material";
 
 function Recipe({ recipe }) {
   const { currentUser, handleDeleteRecipe, handleAddRecipe } =
