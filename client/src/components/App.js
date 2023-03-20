@@ -19,6 +19,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MuiAppBar from "@mui/material/AppBar";
 import { styled, useTheme } from "@mui/material/styles";
+import logo from "../logo/logoBooka.png";
 
 export const UserContext = createContext();
 
@@ -164,7 +165,12 @@ function App() {
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' noWrap component='div'>
-              <img style={{ paddingTop: "10px" }} width='300' height='75' />
+              <img
+                src={logo}
+                style={{ paddingTop: "8px" }}
+                width='200'
+                height='72'
+              />
             </Typography>
           </Toolbar>
         </AppBar>
