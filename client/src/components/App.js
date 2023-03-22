@@ -123,6 +123,15 @@ function App() {
       });
   }
 
+  // update a recipe with rating
+  function handleUpdateRecipe(recipe) {
+    fetch(`/recipes/${recipe.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rating: recipe.rating }),
+    });
+  }
+
   // delete a recipe from your recipe book
   function handleDeleteRecipe(id) {
     let newRecipes = currentUser.recipes.filter((recipe) => recipe.id !== id);
@@ -148,6 +157,7 @@ function App() {
         avatar,
         handleLogOut,
         handleAddRecipe,
+        handleUpdateRecipe,
         handleDeleteRecipe,
       }}
     >
