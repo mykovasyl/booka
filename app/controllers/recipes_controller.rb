@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
   private
 
   def new_recipe_params
-    params.permit(:title, :readyIn, :image, :summary, :instructions, :ingredients, :sourceURL, :user_id)
+    params.permit(:title, :readyIn, :image, :summary, :instructions, :ingredients, :sourceURL, :user_id, rating)
   end
 
   def find_recipe
