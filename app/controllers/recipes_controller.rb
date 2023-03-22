@@ -6,6 +6,10 @@ class RecipesController < ApplicationController
     recipe.update({ingredients: params[:ingredients]})
     render json: recipe, status: :accepted
   end
+  
+  def update
+    recipe = Recipe.update!(update_recipe_params) 
+  end
 
   def destroy
     recipe_to_delete = find_recipe
@@ -16,7 +20,11 @@ class RecipesController < ApplicationController
   private
 
   def new_recipe_params
-    params.permit(:title, :readyIn, :image, :summary, :instructions, :ingredients, :sourceURL, :user_id, rating)
+    params.permit(:title, :readyIn, :image, :summary, :instructions, :ingredients, :sourceURL, :user_id, :rating)
+  end
+
+  def update_recipe_params
+    params.permit(:rating)
   end
 
   def find_recipe

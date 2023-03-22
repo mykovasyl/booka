@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 import Button from "@mui/material/Button";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -13,10 +13,16 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 // import { red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Rating } from "@mui/material";
 
 function Recipe({ recipe }) {
-  const { currentUser, handleDeleteRecipe, handleAddRecipe } =
-    useContext(UserContext);
+  const {
+    currentUser,
+    handleDeleteRecipe,
+    handleAddRecipe,
+    handleUpdateRecipe,
+  } = useContext(UserContext);
+  const [ratingValue, setRatingValue] = useState(0);
   const {
     title,
     readyIn,
@@ -25,6 +31,7 @@ function Recipe({ recipe }) {
     ingredients,
     instructions,
     sourceURL,
+    rating = 0,
     user_id = null,
     id = null,
   } = recipe;
@@ -35,11 +42,17 @@ function Recipe({ recipe }) {
 
   function addRecipe() {
     recipe.user_id = currentUser.id;
+    recipe.rating = ratingValue;
     handleAddRecipe(recipe);
   }
 
   function deleteRecipe() {
     handleDeleteRecipe(id);
+  }
+
+  function updateRating(newRating) {
+    recipe.rating = newRating;
+    handleUpdateRecipe(recipe);
   }
 
   // start of card code -- DO NOT EDIT BELOW THIS LINE --
@@ -68,6 +81,17 @@ function Recipe({ recipe }) {
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardHeader title={title} subheader={readyInText} />
+      {user_id ? (
+        <Rating
+          name='simple-controlled'
+          value={rating}
+          precision={0.5}
+          onChange={(event, newRating) => {
+            setRatingValue(newRating);
+            updateRating(newRating);
+          }}
+        />
+      ) : null}
       <CardMedia component='img' height='194' image={image} alt='food' />
       <CardContent>
         <Typography variant='body2' color='text.secondary'>
