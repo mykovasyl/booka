@@ -22,7 +22,6 @@ function Recipe({ recipe }) {
     handleAddRecipe,
     handleUpdateRecipe,
   } = useContext(UserContext);
-  const [ratingValue, setRatingValue] = useState(0);
   const {
     title,
     readyIn,
@@ -35,6 +34,7 @@ function Recipe({ recipe }) {
     user_id = null,
     id = null,
   } = recipe;
+  const [ratingValue, setRatingValue] = useState(rating);
 
   const mappedIngredients = ingredients.map((ingredient) => (
     <li key={ingredient}>{ingredient}</li>
@@ -84,7 +84,7 @@ function Recipe({ recipe }) {
       {user_id ? (
         <Rating
           name='simple-controlled'
-          value={rating}
+          value={ratingValue}
           precision={0.5}
           onChange={(event, newRating) => {
             setRatingValue(newRating);

@@ -8,7 +8,9 @@ class RecipesController < ApplicationController
   end
   
   def update
-    recipe = Recipe.update!(update_recipe_params) 
+    recipe_to_update = find_recipe
+    recipe_to_update.update!(update_recipe_params) 
+    render json: recipe, status: :accepted
   end
 
   def destroy

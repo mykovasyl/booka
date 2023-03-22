@@ -128,7 +128,7 @@ function App() {
     fetch(`/recipes/${recipe.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(recipe.rating),
+      body: JSON.stringify({ rating: recipe.rating }),
     });
   }
 
