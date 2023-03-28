@@ -1,11 +1,23 @@
-import { Button } from "@mui/material";
 import React, { useState, useContext } from "react";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./App";
+import Avatar from "@mui/material/Avatar";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function SignUp() {
-  const { setCurrentUser, avatar, setAvatar } = useContext(UserContext);
-
+  const { setCurrentUser } = useContext(UserContext);
+  const theme = createTheme();
   const [error, setError] = useState([]);
   const [signupForm, setSignupForm] = useState({
     username: "",
@@ -25,10 +37,6 @@ function SignUp() {
       formData.append(data, signupForm[data]);
     }
 
-    if (avatar !== null) {
-      formData.append("avatar", avatar.avatar);
-    }
-
     fetch("/signup", {
       method: "POST",
       body: formData,
@@ -36,7 +44,6 @@ function SignUp() {
       if (resp.ok) {
         resp.json().then((user) => {
           setCurrentUser(user);
-          // setAvatar(user.image_url);
           navigate("/");
         });
       } else {
@@ -49,70 +56,88 @@ function SignUp() {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
   }
 
-  function handleFileChange(e) {
-    setAvatar({ avatar: e.target.files[0] });
-  }
-
   return (
-    <div>
-      <h2
-        style={{
-          border: ".5px solid grey",
-          marginBottom: "24px",
-          borderRadius: "8px",
-          padding: "8px",
-        }}
-      >
-        Join now and get cooking!
-      </h2>
-      <form onSubmit={handleSubmit}>
-        <p>Username</p>
-        <input
-          name='username'
-          type='username'
-          value={signupForm.username}
-          onChange={handleInputChange}
-        />
-
-        <p>Password</p>
-        <input
-          name='password'
-          type='password'
-          value={signupForm.password}
-          onChange={handleInputChange}
-        />
-        <p>
-          Your password must be 8-20 characters long, contain letters and
-          numbers, and must not contain spaces, special characters, or emoji.
-        </p>
-
-        <p>Confirm password</p>
-        <input
-          name='password_confirmation'
-          type='password'
-          value={signupForm.password_confirmation}
-          onChange={handleInputChange}
-        />
-
-        <p>Name</p>
-        <input
-          name='name'
-          type='name'
-          value={signupForm.name}
-          onChange={handleInputChange}
-        />
-
-        <p>Upload an avatar (optional):</p>
-        <input name='avatar' type='file' onChange={handleFileChange} />
-
-        <Button type='submit' variant='contained'>
-          Sign up!
-        </Button>
-        {/* {error.map((err) => {
-            return <h4>{err}</h4>;
-          })} */}
-      </form>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography component='h1' variant='h5'>
+            Join now and get cooking!
+          </Typography>
+          <Box
+            component='form'
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete='given-name'
+                  name='name'
+                  required
+                  fullWidth
+                  label='Full name'
+                  value={signupForm.name}
+                  onChange={handleInputChange}
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  label='Username'
+                  name='username'
+                  autoComplete='username'
+                  value={signupForm.username}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name='password'
+                  label='Password'
+                  type='password'
+                  autoComplete='new-password'
+                  value={signupForm.password}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  label='Confirm Password'
+                  name='password_confirmation'
+                  type='password'
+                  autoComplete='confirm-password'
+                  value={signupForm.password_confirmation}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
 
