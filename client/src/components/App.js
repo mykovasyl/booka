@@ -25,7 +25,6 @@ export const UserContext = createContext();
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
@@ -154,7 +153,6 @@ function App() {
       value={{
         currentUser,
         setCurrentUser,
-        avatar,
         handleLogOut,
         handleAddRecipe,
         handleUpdateRecipe,
