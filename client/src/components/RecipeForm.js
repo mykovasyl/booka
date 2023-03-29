@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 
@@ -96,6 +96,13 @@ function RecipeForm() {
     <div>
       <form onSubmit={handleSubmit}>
         <label>Recipe Name:</label>
+        <TextField
+          variant='outlined'
+          name='title'
+          size='small'
+          value={newRecipe.title}
+          onChange={handleChange}
+        />
         <input
           type='text'
           name='title'
