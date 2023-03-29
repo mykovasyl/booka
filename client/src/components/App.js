@@ -26,6 +26,16 @@ export const UserContext = createContext();
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [errors, setErrors] = useState([]);
+  const [recipe, setRecipe] = useState({
+    title: "",
+    readyIn: "",
+    image: "",
+    summary: "",
+    instructions: "",
+    ingredients: [],
+    sourceURL: "",
+    user_id: null,
+  });
 
   const navigate = useNavigate();
 
@@ -152,6 +162,8 @@ function App() {
     <UserContext.Provider
       value={{
         currentUser,
+        recipe,
+        setRecipe,
         setCurrentUser,
         handleLogOut,
         handleAddRecipe,

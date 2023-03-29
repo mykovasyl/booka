@@ -4,18 +4,7 @@ import { UserContext } from "./App";
 import Recipe from "./Recipe";
 
 function RandomRecipe() {
-  const [recipe, setRecipe] = useState({
-    title: "",
-    readyIn: "",
-    image: "",
-    summary: "",
-    instructions: "",
-    ingredients: [],
-    sourceURL: "",
-    user_id: null,
-  });
-  const { handleAddRecipe } = useContext(UserContext);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { handleAddRecipe, recipe, setRecipe } = useContext(UserContext);
 
   function handleClick() {
     fetch(
@@ -38,7 +27,6 @@ function RandomRecipe() {
           sourceURL: data.recipes[0].spoonacularSourceUrl,
           user_id: null,
         });
-        setIsLoaded(true);
       });
   }
 
@@ -47,7 +35,7 @@ function RandomRecipe() {
       <Button type='button' variant='contained' onClick={handleClick}>
         Get Random Recipe
       </Button>
-      {isLoaded ? (
+      {recipe.title ? (
         <Recipe recipe={recipe} handleAddRecipe={handleAddRecipe} />
       ) : null}
     </div>

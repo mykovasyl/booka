@@ -81,7 +81,7 @@ function Recipe({ recipe }) {
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardHeader title={title} subheader={readyInText} />
-      {user_id ? (
+      {user_id && recipe.id ? (
         <Rating
           name='simple-controlled'
           value={ratingValue}
