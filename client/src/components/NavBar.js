@@ -49,18 +49,14 @@ function NavBar() {
         </>
       ) : (
         <>
-          <ListItem disablePadding as={Link} to='/randomrecipe'>
+          <ListItem disablePadding as={Link} to='/login'>
             <ListItemButton>
-              <ListItemText>
-                <Link to='/login'>Log In</Link>
-              </ListItemText>
+              <ListItemText>Log In</ListItemText>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding as={Link} to='/randomrecipe'>
+          <ListItem disablePadding as={Link} to='/signup'>
             <ListItemButton>
-              <ListItemText>
-                <Link to='/signup'>Sign Up</Link>
-              </ListItemText>
+              <ListItemText>Sign Up</ListItemText>
             </ListItemButton>
           </ListItem>
         </>
