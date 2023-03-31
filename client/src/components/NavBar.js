@@ -16,32 +16,24 @@ function NavBar() {
     <List>
       {currentUser.id ? (
         <>
-          <ListItem disablePadding>
+          <ListItem disablePadding as={Link} to='/'>
             <ListItemButton>
-              <ListItemText>
-                <Link to='/'>Home</Link>
-              </ListItemText>
+              <ListItemText>Home</ListItemText>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding as={Link} to='/randomrecipe'>
             <ListItemButton>
-              <ListItemText>
-                <Link to='/randomrecipe'>Random Recipe</Link>
-              </ListItemText>
+              <ListItemText>Random Recipe</ListItemText>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding as={Link} to='/recipebook'>
             <ListItemButton>
-              <ListItemText>
-                <Link to='/recipebook'>Your Recipe Book</Link>
-              </ListItemText>
+              <ListItemText>Your Recipe Book</ListItemText>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding as={Link} to='/recipeform'>
             <ListItemButton>
-              <ListItemText>
-                <Link to='/recipeform'>Add Recipe</Link>
-              </ListItemText>
+              <ListItemText>Add Recipe</ListItemText>
             </ListItemButton>
           </ListItem>
           <Divider />
@@ -57,14 +49,14 @@ function NavBar() {
         </>
       ) : (
         <>
-          <ListItem disablePadding>
+          <ListItem disablePadding as={Link} to='/randomrecipe'>
             <ListItemButton>
               <ListItemText>
                 <Link to='/login'>Log In</Link>
               </ListItemText>
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding as={Link} to='/randomrecipe'>
             <ListItemButton>
               <ListItemText>
                 <Link to='/signup'>Sign Up</Link>

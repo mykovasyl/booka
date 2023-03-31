@@ -207,7 +207,7 @@ function App() {
           anchor='left'
           open={open}
         >
-          <DrawerHeader>
+          <DrawerHeader sx={{ height: 80 }}>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "ltr" ? (
                 <ChevronLeftIcon />
