@@ -198,14 +198,15 @@ function RecipeForm() {
                 />
               </Grid>
             </Grid>
-            <Button
-              type='submit'
-              fullWidth
-              variant='contained'
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Add to booka!
-            </Button>
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+              <Button
+                type='submit'
+                variant='contained'
+                sx={{ mt: 3, mb: 2, backgroundColor: "#DE5928" }}
+              >
+                Add to booka!
+              </Button>
+            </Grid>
           </Box>
         </Box>
       </Container>

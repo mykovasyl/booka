@@ -57,12 +57,16 @@ function NavBar() {
         <>
           <ListItem disablePadding as={Link} to='/login'>
             <ListItemButton sx={buttonStyle}>
-              <ListItemText>Log In</ListItemText>
+              <ListItemText>
+                <div style={boldText}>Log In</div>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding as={Link} to='/signup'>
             <ListItemButton sx={buttonStyle}>
-              <ListItemText>Sign Up</ListItemText>
+              <ListItemText>
+                <div style={boldText}>Sign Up</div>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
         </>

@@ -16,7 +16,7 @@ function RecipeBook() {
   }));
   const recipesDisplayed = currentUser.recipes.map((recipe) => (
     <Grid item xs={6} md={4} key={recipe.id}>
-      <Item>
+      <Item sx={{ backgroundColor: "#fbd0a8" }}>
         <Recipe key={recipe.summary} recipe={recipe} />
       </Item>
     </Grid>

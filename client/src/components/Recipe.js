@@ -100,7 +100,12 @@ function Recipe({ recipe }) {
       <CardActions disableSpacing>
         {user_id ? (
           id ? (
-            <Button type='button' variant='contained' onClick={deleteRecipe}>
+            <Button
+              type='button'
+              variant='contained'
+              onClick={deleteRecipe}
+              style={{ backgroundColor: "#bd2a00" }}
+            >
               Delete it!
             </Button>
           ) : null
@@ -111,7 +116,7 @@ function Recipe({ recipe }) {
             variant='contained'
             onClick={addRecipe}
           >
-            <FavoriteIcon />
+            <FavoriteIcon sx={{ color: "#FF7844" }} />
           </IconButton>
         )}
         <ExpandMore

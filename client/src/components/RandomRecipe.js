@@ -32,7 +32,12 @@ function RandomRecipe() {
 
   return (
     <div>
-      <Button type='button' variant='contained' onClick={handleClick}>
+      <Button
+        type='button'
+        variant='contained'
+        onClick={handleClick}
+        style={{ backgroundColor: "#DE5928" }}
+      >
         Get Random Recipe
       </Button>
       {recipe.title ? (

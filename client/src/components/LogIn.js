@@ -89,12 +89,13 @@ function LogIn() {
               autoComplete='current-password'
             />
             <Button
-              type='submit'
               fullWidth
+              type='submit'
               variant='contained'
-              sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
+              sx={{ mt: 3, mb: 2, backgroundColor: "#DE5928" }}
             >
-              Sign In
+              Log In
             </Button>
           </Box>
         </Box>
