@@ -12,50 +12,56 @@ import {
 
 function NavBar() {
   const { currentUser, handleLogOut } = useContext(UserContext);
+  const buttonStyle = { color: "#A52A2A" };
+  const boldText = { fontWeight: "bold" };
   return (
     <List>
       {currentUser.id ? (
         <>
           <ListItem disablePadding as={Link} to='/'>
-            <ListItemButton>
-              <ListItemText>Home</ListItemText>
+            <ListItemButton sx={buttonStyle}>
+              <ListItemText>
+                <div style={boldText}>Home</div>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding as={Link} to='/randomrecipe'>
-            <ListItemButton>
-              <ListItemText>Random Recipe</ListItemText>
+            <ListItemButton sx={buttonStyle}>
+              <ListItemText>
+                <div style={boldText}>Random Recipe</div>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding as={Link} to='/recipebook'>
-            <ListItemButton>
-              <ListItemText>Your Recipe Book</ListItemText>
+            <ListItemButton sx={buttonStyle}>
+              <ListItemText>
+                <div style={boldText}>Your booka</div>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding as={Link} to='/recipeform'>
-            <ListItemButton>
-              <ListItemText>Add Recipe</ListItemText>
+            <ListItemButton sx={buttonStyle}>
+              <ListItemText>
+                <div style={boldText}>Add Recipe</div>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
           <Divider />
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText>
-                <Button variant='contained' onClick={handleLogOut}>
-                  Log out
-                </Button>
-              </ListItemText>
-            </ListItemButton>
+          <ListItem sx={{ mt: 1 }}>
+            <Button variant='outlined' color='error' onClick={handleLogOut}>
+              Log out
+            </Button>
           </ListItem>
         </>
       ) : (
         <>
           <ListItem disablePadding as={Link} to='/login'>
-            <ListItemButton>
+            <ListItemButton sx={buttonStyle}>
               <ListItemText>Log In</ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding as={Link} to='/signup'>
-            <ListItemButton>
+            <ListItemButton sx={buttonStyle}>
               <ListItemText>Sign Up</ListItemText>
             </ListItemButton>
           </ListItem>
