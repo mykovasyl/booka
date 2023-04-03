@@ -1,0 +1,18 @@
+databases:
+  - name: booka
+    databaseName: booka_recipes
+    user: booka_recipes_user
+
+services:
+  - type: web
+    name: booka
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: booka
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
