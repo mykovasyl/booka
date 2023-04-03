@@ -36,7 +36,9 @@ function Recipe({ recipe }) {
   const [ratingValue, setRatingValue] = useState(rating);
 
   const mappedIngredients = ingredients.map((ingredient) => (
-    <li key={ingredient}>{ingredient}</li>
+    <li key={ingredient} style={{ listStyleType: "none" }}>
+      {ingredient}
+    </li>
   ));
 
   function addRecipe() {

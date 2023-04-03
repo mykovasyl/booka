@@ -33,6 +33,7 @@ function RandomRecipe() {
   return (
     <div>
       <Button
+        sx={{ mb: 2 }}
         type='button'
         variant='contained'
         onClick={handleClick}
