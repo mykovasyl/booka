@@ -1,7 +1,7 @@
 databases:
   - name: booka
-    databaseName: booka_recipes
-    user: booka_recipes_user
+    databaseName: booka
+    user: booka
 
 services:
   - type: web
