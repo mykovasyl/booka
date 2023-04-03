@@ -52,26 +52,35 @@ function RecipeForm() {
   }
 
   const ingredients = ingredientsList.map((ingredient, index) => (
-    <div key={index}>
-      <input
+    <Grid item xs={12} key={index}>
+      <TextField
+        required
+        sx={{ width: 1 / 2 }}
+        variant='standard'
+        label='Ingredient name'
         name='name'
-        placeholder='Name...'
         value={ingredient.name}
         onChange={(event) => handleOnChange(index, event)}
       />
-      <input
+      <TextField
+        required
+        sx={{ width: 1 / 4 }}
+        variant='standard'
+        label='Amount'
         name='amount'
-        placeholder='Amount...'
         value={ingredient.amount}
         onChange={(event) => handleOnChange(index, event)}
       />
-      <input
+      <TextField
+        required
+        sx={{ width: 1 / 4 }}
+        variant='standard'
+        label='Unit'
         name='unit'
-        placeholder='Unit...'
         value={ingredient.unit}
         onChange={(event) => handleOnChange(index, event)}
       />
-    </div>
+    </Grid>
   ));
 
   function handleSubmit(e) {
@@ -122,7 +131,6 @@ function RecipeForm() {
           >
             <Grid container spacing={2}>
               <Grid item sx={{ mr: 3 }} xs={7}>
-                {/* <Typography component='p'>Recipe Name:</Typography> */}
                 <TextField
                   name='title'
                   label='Recipe Name'
@@ -135,7 +143,6 @@ function RecipeForm() {
                 />
               </Grid>
               <Grid item xs={4.65}>
-                {/* <Typography component='p'>Ready In:</Typography> */}
                 <TextField
                   required
                   fullWidth
@@ -147,12 +154,11 @@ function RecipeForm() {
                 />
               </Grid>
               <Grid item xs={12}>
-                {/* <Typography component='p'>Summary:</Typography> */}
                 <TextField
                   required
                   fullWidth
                   multiline
-                  minRows={5}
+                  minRows={3}
                   variant='standard'
                   label='Summary'
                   name='summary'
@@ -161,7 +167,6 @@ function RecipeForm() {
                 />
               </Grid>
               <Grid item xs={12}>
-                {/* <Typography component='p'>Image URL:</Typography> */}
                 <TextField
                   required
                   fullWidth
@@ -172,13 +177,25 @@ function RecipeForm() {
                   onChange={handleChange}
                 />
               </Grid>
+              {/* <Grid item xs={12}>
+                <Typography>Ingredients</Typography>
+              </Grid> */}
+              {ingredients}
               <Grid item xs={12}>
-                {/* <Typography component='p'>Instructions:</Typography> */}
+                <Button
+                  style={{ color: "#ba3b0a" }}
+                  type='button'
+                  onClick={handleIngredientAdd}
+                >
+                  Add more ingredients
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
                   multiline
-                  minRows={10}
+                  minRows={5}
                   variant='standard'
                   label='Instructions'
                   name='instructions'
@@ -187,7 +204,6 @@ function RecipeForm() {
                 />
               </Grid>
               <Grid item xs={12}>
-                {/* <Typography component='p'>Optional source URL:</Typography> */}
                 <TextField
                   fullWidth
                   variant='standard'
@@ -211,82 +227,6 @@ function RecipeForm() {
         </Box>
       </Container>
     </ThemeProvider>
-
-    // <div>
-    //   <form onSubmit={handleSubmit}>
-    //     <label>Recipe Name:</label>
-    //     <TextField
-    //       variant='outlined'
-    //       name='title'
-    //       size='small'
-    //       value={newRecipe.title}
-    //       onChange={handleChange}
-    //     />
-    //     <br></br>
-
-    //     <label>Ready in:</label>
-    //     <input
-    //       type='text'
-    //       name='readyIn'
-    //       value={newRecipe.readyIn}
-    //       onChange={handleChange}
-    //     ></input>
-    //     <label>minutes</label>
-    //     <br></br>
-
-    //     <label>Summary:</label>
-    //     <br></br>
-    //     <textarea
-    //       name='summary'
-    //       rows='5'
-    //       cols='50'
-    //       value={newRecipe.summary}
-    //       onChange={handleChange}
-    //     ></textarea>
-    //     <br></br>
-
-    //     <label>Image:</label>
-    //     <input
-    //       type='text'
-    //       name='image'
-    //       value={newRecipe.image}
-    //       onChange={handleChange}
-    //     ></input>
-    //     <br></br>
-
-    //     <label>Ingredients:</label>
-    //     <br></br>
-    //     {ingredients}
-    //     <button type='button' onClick={handleIngredientAdd}>
-    //       Add more ingredients
-    //     </button>
-    //     <br></br>
-
-    //     <label>Instructions:</label>
-    //     <br></br>
-    //     <textarea
-    //       name='instructions'
-    //       rows='5'
-    //       cols='50'
-    //       value={newRecipe.instructions}
-    //       onChange={handleChange}
-    //     ></textarea>
-    //     <br></br>
-
-    //     <label>Optional source link:</label>
-    //     <input
-    //       type='text'
-    //       name='sourceUrl'
-    //       value={newRecipe.sourceUrl}
-    //       onChange={handleChange}
-    //     ></input>
-    //     <br></br>
-
-    //     <Button type='submit' variant='contained'>
-    //       Add Recipe To Book
-    //     </Button>
-    //   </form>
-    // </div>
   );
 }
 
