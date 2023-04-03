@@ -139,7 +139,7 @@ function RecipeForm() {
                   fullWidth
                   value={newRecipe.title}
                   onChange={handleChange}
-                  autoFocus
+                  // autoFocus
                 />
               </Grid>
               <Grid item xs={4.65}>
