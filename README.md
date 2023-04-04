@@ -6,7 +6,7 @@ Booka is your personal recipe book wrapped neatly in a SPA. Random recipes can b
 
 Deployed application: https://booka.onrender.com
 
-[Video walkthrough](https://youtu.be/syS3NQz1lzk): Updated version coming soon!
+Video walkthrough: Coming soon!
 
 [Associated blog post](https://medium.com/@mykovasyl/adding-a-logo-react-36f0435cb6dc): a brief word about adding a logo
 
